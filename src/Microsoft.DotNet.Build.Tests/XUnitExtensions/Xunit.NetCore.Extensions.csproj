@@ -1,0 +1,46 @@
+<Project Sdk="RoslynTools.RepoToolset">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp1.0;net46</TargetFrameworks>
+    <CopyLocalLockFileAssemblies Condition="'$(TargetFramework)' == 'netcoreapp1.0'">true</CopyLocalLockFileAssemblies>
+    <IsPackable>false</IsPackable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" version="2.2.0-beta2-build3300" />
+    <Compile Include="Attributes\ConditionalClassAttribute.cs" />
+    <Compile Include="Attributes\ConditionalFactAttribute.cs" />
+    <Compile Include="Attributes\ConditionalTheoryAttribute.cs" />
+    <Compile Include="Attributes\ActiveIssueAttribute.cs" />
+    <Compile Include="Attributes\PlatformSpecificAttribute.cs" />
+    <Compile Include="Attributes\SkipOnTargetFrameworkAttribute.cs" />
+    <Compile Include="Attributes\TestCategoryAttribute.cs" />
+    <Compile Include="Discoverers\ConditionalClassDiscoverer.cs" />
+    <Compile Include="Discoverers\ConditionalFactDiscoverer.cs" />
+    <Compile Include="Discoverers\ConditionalTestDiscoverer.cs" />
+    <Compile Include="Discoverers\ConditionalTheoryDiscoverer.cs" />
+    <Compile Include="Discoverers\ActiveIssueDiscoverer.cs" />
+    <Compile Include="Attributes\OuterLoopAttribute.cs" />
+    <Compile Include="Discoverers\OuterLoopTestsDiscoverer.cs" />
+    <Compile Include="Discoverers\PlatformSpecificDiscoverer.cs" />
+    <Compile Include="Discoverers\SkipOnTargetFrameworkDiscoverer.cs" />
+    <Compile Include="Discoverers\TestCategoryDiscoverer.cs" />
+    <Compile Include="SkippedTestCase.cs" />
+    <Compile Include="TargetFrameworkMonikers.cs" />
+    <Compile Include="TestPlatforms.cs" />
+    <Compile Include="XunitConstants.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <PackageReference Include="xunit.extensibility.execution" Version="2.2.0-beta2-build3300" />
+    <PackageReference Include="xunit.abstractions" Version="2.0.1-rc2" />
+    <PackageReference Include="NETStandard.Library" Version="1.6.0" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Threading.Tasks" />
+    <Compile Include="DesktopTestTraceListener.cs" />
+  </ItemGroup>
+
+</Project>
