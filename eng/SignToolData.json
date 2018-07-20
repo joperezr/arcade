@@ -15,7 +15,9 @@
         "bin/Microsoft.DotNet.Helix.Client/netstandard1.4/Microsoft.DotNet.Helix.Client.dll",
         "bin/Microsoft.DotNet.Helix.Client/net45/Microsoft.DotNet.Helix.Client.dll",
         "bin/Microsoft.DotNet.Helix.Sdk/netstandard2.0/Microsoft.DotNet.Helix.Sdk.dll",
-        "bin/Microsoft.DotNet.Helix.Sdk/net45/Microsoft.DotNet.Helix.Sdk.dll"
+        "bin/Microsoft.DotNet.Helix.Sdk/net45/Microsoft.DotNet.Helix.Sdk.dll",
+        "bin/CoreFx.Testing/net46/xunit.netcore.extensions.dll",
+        "bin/CoreFx.Testing/netcoreapp1.0/xunit.netcore.extensions.dll"
       ]
     },
     {
@@ -38,6 +40,7 @@
     "Microsoft.DiaSymReader.PortablePdb.dll",
     "Microsoft.DotNet.VersionTools.dll",
     "Microsoft.Rest.ClientRuntime.dll",
+    "Microsoft.Win32.Primitives.dll",
     "Microsoft.WindowsAzure.Storage.dll",
     "Newtonsoft.Json.dll",
     "NuGet.Commands.dll",
@@ -53,18 +56,24 @@
     "NuGet.Protocol.dll",
     "NuGet.Versioning.dll",
     "SleetLib.dll",
+    "System.AppContext.dll",
     "System.Buffers.dll",
     "System.Collections.Concurrent.dll",
     "System.Collections.Immutable.dll",
     "System.Collections.NonGeneric.dll",
+    "System.Console.dll",
     "System.Diagnostics.DiagnosticSource.dll",
     "System.Dynamic.Runtime.dll",
+    "System.Globalization.Calendars.dll",
+    "System.IO.Compression.dll",
     "System.IO.Compression.ZipFile.dll",
     "System.IO.FileSystem.Primitives.dll",
+    "System.IO.FileSystem.dll",
     "System.IO.FileSystem.Watcher.dll",
     "System.Linq.dll",
     "System.Linq.Expressions.dll",
     "System.Net.Http.dll",
+    "System.Net.Sockets.dll",
     "System.ObjectModel.dll",
     "System.Reflection.Emit.dll",
     "System.Reflection.Emit.ILGeneration.dll",
@@ -91,6 +100,11 @@
     "System.Threading.ThreadPool.dll",
     "System.Xml.ReaderWriter.dll",
     "System.Xml.XDocument.dll",
-    "System.Xml.XmlDocument.dll"
+    "System.Xml.XmlDocument.dll",
+    "xunit.abstractions.dll",
+    "xunit.assert.dll",
+    "xunit.core.dll",
+    "xunit.execution.desktop.dll",
+    "xunit.execution.dotnet.dll"
   ]
 }

@@ -1,10 +1,12 @@
 <Project Sdk="RoslynTools.RepoToolset">
 
   <PropertyGroup>
+    <AssemblyName>xunit.netcore.extensions</AssemblyName>
     <TargetFrameworks>netcoreapp1.0;net46</TargetFrameworks>
-    <CopyLocalLockFileAssemblies Condition="'$(TargetFramework)' == 'netcoreapp1.0'">true</CopyLocalLockFileAssemblies>
-    <IsPackable>false</IsPackable>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <IsPackable>true</IsPackable>
+    <PackageId>CoreFx.Testing</PackageId>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,17 +32,53 @@
     <Compile Include="TargetFrameworkMonikers.cs" />
     <Compile Include="TestPlatforms.cs" />
     <Compile Include="XunitConstants.cs" />
+
+    <!-- Package Content -->
+    <Content Include="$(MSBuildThisFileDirectory)build\*.targets">
+      <PackagePath>build\%(Filename).targets</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)..\..\LICENSE.TXT">
+      <PackagePath>LICENSE.TXT</PackagePath>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)..\..\THIRD-PARTY-NOTICES.TXT">
+      <PackagePath>THIRD-PARTY-NOTICES.TXT</PackagePath>
+      <Pack>true</Pack>
+    </Content>
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
     <PackageReference Include="xunit.extensibility.execution" Version="2.2.0-beta2-build3300" />
     <PackageReference Include="xunit.abstractions" Version="2.0.1-rc2" />
     <PackageReference Include="NETStandard.Library" Version="1.6.0" />
+    <PackageReference Include="xunit.runner.console" Version="2.3.1" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime" />
     <Reference Include="System.Threading.Tasks" />
     <Compile Include="DesktopTestTraceListener.cs" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="@(PackageReference)">
+      <PrivateAssets>All</PrivateAssets>
+      <Publish Condition=" '%(PackageReference.Publish)' != 'false' ">true</Publish>
+    </PackageReference>
+    <Reference Update="@(Reference)">
+      <Pack>false</Pack>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);CollectAssets</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+  <Target Name="CollectAssets" DependsOnTargets="Publish">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="@(ResolvedFileToPublish->'$([MSBuild]::NormalizeDirectory($(PublishDir)))%(RelativePath)')">
+        <PackagePath>tools/$(TargetFramework)/any/%(ResolvedFileToPublish.RelativePath)</PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
 
 </Project>
